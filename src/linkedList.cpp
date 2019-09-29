@@ -20,7 +20,6 @@ linkedList::~linkedList()
     int i = 0;
 
     while(head != NULL){
-        std::cout << head->data << std::endl;
         remove(i);
     }
 }
