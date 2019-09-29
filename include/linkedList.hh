@@ -14,7 +14,7 @@ class linkedList {
     ~linkedList();
     int append(int val);
     int remove(int index);
-    int insert(int index);
+    int insert(int val, int index);
     int prettyPrint();
 };
 

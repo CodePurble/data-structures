@@ -85,3 +85,31 @@ int linkedList::remove(int index)
     }
 
 }
+
+int linkedList::insert(int val, int index)
+{
+    int l = 1;
+    node* ins = new node;
+    node* curr = head;
+    node* prev;
+    
+    ins->data = val;
+
+    if(index == 0){
+        head = ins;
+        head->next = curr;
+        return l+1;
+    }
+    else{
+    for(int i = 0; i < index; i++){
+        prev = curr;
+        curr = curr->next;
+        l++;
+    }
+
+    prev->next = ins;
+    ins->next = curr;
+
+    return l+1;
+    }
+}

@@ -12,8 +12,9 @@ int main()
 
     l.prettyPrint();
 
-    l.remove(0);
+    l.insert(3232, 0);
     l.prettyPrint();
+
 
     return 0;
 }
