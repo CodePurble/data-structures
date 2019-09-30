@@ -13,6 +13,7 @@ int main()
     l.prettyPrint();
 
     l.insert(3232, 0);
+    l.reverse();
     l.prettyPrint();
 
 

@@ -113,3 +113,22 @@ int linkedList::insert(int val, int index)
     return l+1;
     }
 }
+
+void linkedList::reverse()
+{
+    node* curr = head->next;
+    node* prev = head;
+    node* nxt = curr->next;
+    prev->next = NULL;
+
+    while(curr != NULL){
+        curr->next = prev;
+        prev = curr;
+        curr = nxt;
+
+        if(nxt != NULL)
+            nxt = nxt->next;
+    }
+
+    head = prev;
+}
