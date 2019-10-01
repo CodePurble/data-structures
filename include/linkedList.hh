@@ -16,6 +16,7 @@ class linkedList {
     int remove(int index);
     int insert(int val, int index);
     int prettyPrint();
+    void reverse();
 };
 
 #endif
