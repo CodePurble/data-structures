@@ -3,9 +3,10 @@
 
 linkedList::linkedList()
 {
-    head = new node;
-    head->data = 0;
-    head->next = NULL;
+    // head = new node;
+    // head->data = 0;
+    // head->next = NULL;
+    head = NULL;
 }
 
 linkedList::linkedList(int val)
@@ -28,20 +29,28 @@ int linkedList::append(int val)
 {
     int len = 1;
     node* curr = head;
-    node* add = new node;
 
-    while(curr->next != NULL){
-        curr = curr->next;
-        len++;
+    if(curr == NULL){
+        head = new node;
+        head->data = val;
+        head->next = NULL;
+        return len;
     }
+    else{
+        node* add = new node;
+        while(curr->next != NULL){
+            curr = curr->next;
+            len++;
+        }
 
-    curr->next = add;
-    add->data = val;
-    add->next = NULL;
+        curr->next = add;
+        add->data = val;
+        add->next = NULL;
 
-    len += 1;
+        len += 1;
 
-    return len;
+        return len;
+    }
 
 }
 
