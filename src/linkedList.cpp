@@ -16,13 +16,46 @@ linkedList::linkedList(int val)
     head->next = NULL;
 }
 
+linkedList::linkedList(linkedList& source)
+{
+    this->assign(source);
+    std::cout << "Copy constructor" << std::endl;
+}
+
 linkedList::~linkedList()
+{
+    destroy();
+}
+
+void linkedList::destroy()
 {
     int i = 0;
 
     while(head != NULL){
         remove(i);
     }
+
+    std::cout << "Destruction!!!" << std::endl;
+}
+
+linkedList* linkedList::clone()
+{
+    linkedList* listClone = NULL;
+    node* curr = head;
+    
+    while(curr != NULL){
+        listClone->append(curr->data);
+        curr = curr->next;
+    }
+
+    return listClone;
+}
+
+void linkedList::assign(linkedList source)
+{
+    linkedList* old = this;
+    head = (source.clone())->head;
+    old->destroy();
 }
 
 int linkedList::append(int val)
@@ -140,4 +173,11 @@ void linkedList::reverse()
     }
 
     head = prev;
+}
+
+linkedList linkedList::operator=(linkedList source)
+{
+    this->assign(source);
+    
+    return *this;
 }
