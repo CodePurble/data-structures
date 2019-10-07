@@ -7,6 +7,7 @@ linkedList::linkedList()
     // head->data = 0;
     // head->next = NULL;
     head = NULL;
+    len = 0;
 }
 
 linkedList::linkedList(int val)
@@ -14,20 +15,23 @@ linkedList::linkedList(int val)
     head = new node;
     head->data = val;
     head->next = NULL;
+    
+    len = 1;
 }
 
-linkedList::linkedList(linkedList& source)
+linkedList::linkedList(linkedList& source) // Copy constructor (called during initialisations)
 {
-    this->assign(source);
+    this->head = NULL;
+    this->assign(&source);
     std::cout << "Copy constructor" << std::endl;
 }
 
 linkedList::~linkedList()
 {
-    destroy();
+    clean();
 }
 
-void linkedList::destroy()
+void linkedList::clean() // "Cleans" list of all its nodes
 {
     int i = 0;
 
@@ -38,9 +42,9 @@ void linkedList::destroy()
     std::cout << "Destruction!!!" << std::endl;
 }
 
-linkedList* linkedList::clone()
+linkedList* linkedList::clone() // Create identical copy of calling list, returns its head
 {
-    linkedList* listClone = NULL;
+    linkedList* listClone = new linkedList;
     node* curr = head;
     
     while(curr != NULL){
@@ -51,108 +55,140 @@ linkedList* linkedList::clone()
     return listClone;
 }
 
-void linkedList::assign(linkedList source)
+void linkedList::assign(linkedList* source) // Copies "source" list into calling list object
 {
-    linkedList* old = this;
-    head = (source.clone())->head;
-    old->destroy();
-}
+    node* srcCurr = source->head;
+    this->clean();
 
-int linkedList::append(int val)
-{
-    int len = 1;
+    while(srcCurr != NULL){
+        this->append(srcCurr->data);
+        srcCurr = srcCurr->next;
+    }
+}   
+/*Non cohesive, spaghetti implementation of assign() method*/
+/*
     node* curr = head;
+    int i = 0;
+        if(i < len){
+            this->replace(srcCurr->data, i);
+            srcCurr = srcCurr->next;
+            i++;
+        }
+        else{
+            while(srcCurr != NULL){
+                this->append(srcCurr->data);
+                srcCurr = srcCurr->next;
+            }
+        }
+    }
 
-    if(curr == NULL){
+    if(source->len < len){
+        for(int j = 0; j < i; j++)
+            curr = curr->next;
+
+        while(curr->next != NULL){
+            remove(this->getLength()-1);
+        }
+        remove(this->getLength()-1);
+    }
+*/
+
+/*
+List traversal
+
+node* curr = head;
+
+while(curr->next != NULL){
+    curr = curr->next;
+}
+*/
+void linkedList::append(int val)
+{
+    if(head == NULL){
         head = new node;
         head->data = val;
         head->next = NULL;
-        return len;
     }
     else{
         node* add = new node;
+        node* curr = head;
+
         while(curr->next != NULL){
             curr = curr->next;
-            len++;
         }
 
         curr->next = add;
         add->data = val;
         add->next = NULL;
 
-        len += 1;
 
-        return len;
     }
+    len++;
 
 }
 
-int linkedList::prettyPrint()
+void linkedList::prettyPrint()
 {
     node* curr = head;
-    int len = 0;
 
     while(curr != NULL){
         std::cout << curr->data << " --> ";
         curr = curr->next;
-        len++;
     }
     std::cout << "NULL" << std::endl;
-
-    return len;
 }
 
-int linkedList::remove(int index)
+void linkedList::remove(int index)
 {
     node* curr = head;
-    int len = 1;
 
     if(index == 0){
         head = head->next;
         delete curr;
-        return len;
     }
     else{
         node* prev;
         for(int i = 0; i < index; i++){
             prev = curr;
             curr = curr->next;
-            len++;
         }
 
         prev->next = curr->next;
         delete curr;
         
-        return len-1;
     }
+    len--;
 
 }
 
-int linkedList::insert(int val, int index)
+void linkedList::insert(int val, int index)
 {
-    int l = 1;
     node* ins = new node;
     node* curr = head;
     node* prev;
     
     ins->data = val;
 
-    if(index == 0){
-        head = ins;
-        head->next = curr;
-        return l+1;
+    if(index < 0 || index > len){
+        std::cout << "Index out of bounds!!" << std::endl;
+        return;
     }
     else{
-    for(int i = 0; i < index; i++){
-        prev = curr;
-        curr = curr->next;
-        l++;
-    }
+        if(index == 0){
+            head = ins;
+            head->next = curr;
+        }
+        else{
+        for(int i = 0; i < index; i++){
+            prev = curr;
+            curr = curr->next;
+        }
 
-    prev->next = ins;
-    ins->next = curr;
+        prev->next = ins;
+        ins->next = curr;
 
-    return l+1;
+        }
+        len++;
     }
 }
 
@@ -175,9 +211,32 @@ void linkedList::reverse()
     head = prev;
 }
 
-linkedList linkedList::operator=(linkedList source)
+void linkedList::replace(int val, int index) // In place substitution of data of node 
 {
-    this->assign(source);
-    
+    node* curr = head;
+
+    if(index < 0 || index > len-1)
+        std::cout << "Index out of bounds!!!"  << std::endl;
+    else{
+        for(int i = 0; i < index; i++){
+            curr = curr->next;
+        }
+        
+        if(curr != NULL){
+            curr->data = val;
+        }
+    }
+}
+
+int linkedList::getLength()
+{
+    return len;
+}
+
+linkedList& linkedList::operator=(linkedList source)
+{
+    this->assign(&source);
+    std::cout << "Assignment overload!!!!" << std::endl;
+
     return *this;
 }

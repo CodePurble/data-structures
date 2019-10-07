@@ -12,21 +12,27 @@ typedef NODE node;
 class linkedList {
     private:
     node* head;
+    int len;
+
     linkedList* clone();
-    void assign(linkedList source);
-    void destroy();
+    void clean();
 
     public:
     linkedList();
     linkedList(int val);
-    linkedList(linkedList& list2); // Copy constructor
+    linkedList(linkedList& source); // Copy constructor
     ~linkedList();
-    int append(int val);
-    int remove(int index);
-    int insert(int val, int index);
-    int prettyPrint();
+
+    void assign(linkedList* source);
+    void append(int val);
+    void remove(int index);
+    void insert(int val, int index);
+    void replace(int val, int index);
+    int getLength();
     void reverse();
-    linkedList operator=(linkedList list2);
+    void prettyPrint();
+
+    linkedList& operator=(linkedList list2); //Returning a reference is key!!
 };
 
 #endif
