@@ -23,7 +23,6 @@ linkedList::linkedList(linkedList& source) // Copy constructor (called during in
 {
     this->head = NULL;
     this->assign(&source);
-    std::cout << "Copy constructor" << std::endl;
 }
 
 linkedList::~linkedList()
@@ -33,13 +32,9 @@ linkedList::~linkedList()
 
 void linkedList::clean() // "Cleans" list of all its nodes
 {
-    int i = 0;
-
     while(head != NULL){
-        remove(i);
+        remove(0);
     }
-
-    std::cout << "Destruction!!!" << std::endl;
 }
 
 linkedList* linkedList::clone() // Create identical copy of calling list, returns its head
@@ -142,38 +137,44 @@ void linkedList::remove(int index)
 {
     node* curr = head;
 
-    if(index == 0){
-        head = head->next;
-        delete curr;
+    if(index < 0 || index >= len){
+        std::cout << "Index out of bounds" << std::endl;
+        return;
     }
     else{
-        node* prev;
-        for(int i = 0; i < index; i++){
-            prev = curr;
-            curr = curr->next;
+        if(index == 0){
+            head = head->next;
+            delete curr;
         }
+        else{
+            node* prev;
+            for(int i = 0; i < index; i++){
+                prev = curr;
+                curr = curr->next;
+            }
 
-        prev->next = curr->next;
-        delete curr;
-        
+            prev->next = curr->next;
+            delete curr;
+            
+        }
+        len--;
     }
-    len--;
-
 }
 
 void linkedList::insert(int val, int index)
 {
-    node* ins = new node;
-    node* curr = head;
-    node* prev;
-    
-    ins->data = val;
 
-    if(index < 0 || index > len){
+    if(index < 0 || index >= len){
         std::cout << "Index out of bounds!!" << std::endl;
         return;
     }
     else{
+        node* ins = new node;
+        node* curr = head;
+        node* prev;
+        
+        ins->data = val;
+
         if(index == 0){
             head = ins;
             head->next = curr;
@@ -192,10 +193,11 @@ void linkedList::insert(int val, int index)
     }
 }
 
-void linkedList::reverse()
+linkedList* linkedList::reverse() // Non mutating reverse; Must be used like this -> list1.assign(list2.reverse())
 {
-    node* curr = head->next;
-    node* prev = head;
+    linkedList* selfClone = this->clone();
+    node* curr = selfClone->head->next;
+    node* prev = selfClone->head;
     node* nxt = curr->next;
     prev->next = NULL;
 
@@ -208,16 +210,18 @@ void linkedList::reverse()
             nxt = nxt->next;
     }
 
-    head = prev;
+    selfClone->head = prev;
+    return selfClone;
 }
 
 void linkedList::replace(int val, int index) // In place substitution of data of node 
 {
-    node* curr = head;
 
     if(index < 0 || index > len-1)
         std::cout << "Index out of bounds!!!"  << std::endl;
     else{
+        node* curr = head;
+
         for(int i = 0; i < index; i++){
             curr = curr->next;
         }
@@ -236,7 +240,6 @@ int linkedList::getLength()
 linkedList& linkedList::operator=(linkedList source)
 {
     this->assign(&source);
-    std::cout << "Assignment overload!!!!" << std::endl;
 
     return *this;
 }

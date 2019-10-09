@@ -11,18 +11,30 @@ struct NODE
 typedef struct NODE node;
 
 class doublyLinked {
-    node* head;
+    private:
+        node* head;
+        int len;
+
+        doublyLinked* clone();
+        void clean();
 
     public:
-    doublyLinked();
-    doublyLinked(int val);
-    ~doublyLinked();
-    int append(int val);
-    int remove(int index);
-    int insert(int val, int index);
-    int prettyPrint();
+        doublyLinked();
+        doublyLinked(int val);
+        doublyLinked(doublyLinked& source);
+        ~doublyLinked();
+
+        void append(int val);
+        void remove(int index);
+        void insert(int val, int index);
+        void replace(int val, int index);
+        void assign(doublyLinked* source);
+        void prettyPrint();
+        int getLength();
+        doublyLinked* reverse();
+
+        doublyLinked& operator=(doublyLinked source);
     
-    doublyLinked reverse();
 };
 
 #endif

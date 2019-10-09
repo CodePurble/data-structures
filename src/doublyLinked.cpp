@@ -8,6 +8,7 @@ doublyLinked::doublyLinked()
     // head->next = NULL;
     // head->prev = NULL;
     head = NULL;
+    len = 0;
 }
 
 doublyLinked::doublyLinked(int val)
@@ -16,18 +17,54 @@ doublyLinked::doublyLinked(int val)
     head->data = val;
     head->next = NULL;
     head->prev = NULL;
+
+    len = 1;
+}
+
+doublyLinked::doublyLinked(doublyLinked& source)
+{
+    this->head = NULL;
+    this->assign(&source);
 }
 
 doublyLinked::~doublyLinked()
+{
+    clean();
+}
+
+doublyLinked* doublyLinked::clone()
+{
+    doublyLinked* listClone = new doublyLinked;
+    node* curr = head;
+
+    while(curr != NULL){
+        listClone->append(curr->data);
+        curr = curr->next;
+    }
+
+    return listClone;
+}
+
+void doublyLinked::assign(doublyLinked* source)
+{
+    node* srcCurr = source->head;
+    this->clean();
+    
+    while(srcCurr != NULL){
+        this->append(srcCurr->data);
+        srcCurr = srcCurr->next;
+    }
+}
+
+void doublyLinked::clean()
 {
     while(head != NULL){
         remove(0);
     }
 }
 
-int doublyLinked::append(int val)
+void doublyLinked::append(int val)
 {
-    int len = 1;
     node* curr = head;
     node* add = new node;
 
@@ -40,7 +77,6 @@ int doublyLinked::append(int val)
     else{
         while(curr->next != NULL){
             curr = curr->next;
-            len++;
         }
 
         curr->next = add;
@@ -48,18 +84,14 @@ int doublyLinked::append(int val)
         add->data = val;
         add->next = NULL;
 
-        len += 1;
 
     }
-    return len;
-
-
+    len++;
 }
 
-int doublyLinked::prettyPrint()
+void doublyLinked::prettyPrint()
 {
     node* curr = head;
-    int len = 0;
 
     while(curr != NULL){
         if(curr->prev == NULL)
@@ -70,97 +102,124 @@ int doublyLinked::prettyPrint()
             std::cout << curr->data << " <--> ";
 
         curr = curr->next;
-        len++;
     }
     std::cout << "NULL" << std::endl;
 
-    return len;
 }
 
-int doublyLinked::remove(int index)
+void doublyLinked::remove(int index)
 {
     node* curr = head;
-    int len = 1;
 
-    if(index == 0){
-        if(head->next == NULL){
-            delete head;
-            head = NULL;
-            return 0;
+    if(index < 0 || index >= len){
+        std::cout << "Index out of bounds" << std::endl;
+        return;
+    }
+    else{
+        if(index == 0){
+            head = head->next;
+            if(head != NULL){
+                delete head->prev;
+                head->prev = NULL;
+            }
+            else{
+                delete head;
+            }
         }
         else{
-        head = head->next;
-        delete head->prev;
-        head->prev = NULL;
-        return len;
-        }
-    }
-    else{
-        for(int i = 0; i < index; i++){
-            curr = curr->next;
-            len++;
+            for(int i = 0; i < index; i++)
+                curr = curr->next;
+
+            curr->prev->next = curr->next;
+            if(curr->next != NULL)
+                curr->next->prev = curr->prev;
+            delete curr;
         }
 
-        curr->prev->next = curr->next;
-        if(curr->next != NULL)
-            curr->next->prev = curr->prev;
-        delete curr;
+        len--;
+    }
+
+}
+
+void doublyLinked::insert(int val, int index)
+{
+    if(index < 0 || index >= len){
+        std::cout << "Index out of bounds" << std::endl;
+        return;
+    }
+    else{
+        node* ins = new node;
+        node* curr = head;
         
-        return len-1;
-    }
+        ins->data = val;
 
+        if(index == 0){
+            head = ins;
+            head->prev = NULL;
+            head->next = curr;
+            if(curr != NULL)
+                curr->prev = head;
+        }
+        else{
+            for(int i = 0; i < index; i++){
+                curr = curr->next;
+        }
+            curr->prev->next = ins;
+            ins->prev = curr->prev;
+            curr->prev = ins;
+            ins->next = curr;
+        }
+        len++;
+    }    
 }
 
-int doublyLinked::insert(int val, int index)
+doublyLinked* doublyLinked::reverse() // Non mutating reverse; Must be used like this -> list1.assign(list2.reverse())
 {
-    int l = 1;
-    node* ins = new node;
-    node* curr = head;
-    
-    ins->data = val;
+    doublyLinked* selfClone = this->clone();
 
-    if(index == 0){
-        head = ins;
-        head->prev = NULL;
-        head->next = curr;
-        curr->prev = head;
-        return l+1;
+    node* pre = selfClone->head;
+    node* curr = selfClone->head->next;
+    node* nxt = curr->next;
+    pre->next = NULL;
+
+    while(curr != NULL){
+        curr->next = pre;
+        curr->prev = nxt;
+        pre = curr;
+        curr = nxt;
+
+        if(nxt != NULL)
+            nxt = nxt->next;
+    }
+
+    selfClone->head = pre;
+
+    return selfClone;
+}
+
+void doublyLinked::replace(int val, int index)
+{
+    if(index < 0 || index >= len){
+        std::cout << "Index out of bounds!!" << std::endl;
+        return;
     }
     else{
-        for(int i = 0; i < index; i++){
-            curr = curr->next;
-            l++;
-    }
-        curr->prev->next = ins;
-        ins->prev = curr->prev;
-        curr->prev = ins;
-        ins->next = curr;
+        node* curr = head;
 
-    return l+1;
-    }
+        for(int i = 0; i < index; i++)
+            curr = curr->next;
+
+        curr->data = val;
+    }    
 }
 
-doublyLinked doublyLinked::reverse()
+doublyLinked& doublyLinked::operator=(doublyLinked source)
 {
-    doublyLinked rev;
+    this->assign(&source);
+    return *this;
+}
 
-    node* curr = head;
-
-    while(curr->next != NULL){
-        rev.append(curr->data);
-        curr = curr->next;
-    }
-        rev.append(curr->data);
-        // rev.prettyPrint();
-
-    node* revCurr = rev.head;
-    while(curr != NULL){
-        revCurr->data = curr->data;
-        std::cout << curr->data << std::endl;
-        revCurr = revCurr->next;
-        curr = curr->prev;
-    }
-        rev.prettyPrint();
-
-    return rev;
+int doublyLinked::getLength()
+{
+    return len;
 }
