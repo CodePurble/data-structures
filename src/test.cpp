@@ -1,19 +1,16 @@
-#include<iostream>
-// #include "doublyLinked.hh"
-#include "linkedList.hh"
+#include <iostream>
+#include "binaryTree.hh"
+
 using namespace std;
 
 int main()
 {
-    linkedList l;
+    bNode* root = nullptr;
 
-    for(int i = 0; i < 5; i++){
-        l.append(2*i);
-    }
+    root = insert(root, 4);
+    root = insert(root, 5);
 
-    l.prettyPrint();
-    l.assign(l.reverse());
-    l.prettyPrint();
+    preOrderTraversal(root);
 
     return 0;
 }

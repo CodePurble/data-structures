@@ -5,9 +5,9 @@ doublyLinked::doublyLinked()
 {
     // head = new node;
     // head->data = 0;
-    // head->next = NULL;
-    // head->prev = NULL;
-    head = NULL;
+    // head->next = nullptr;
+    // head->prev = nullptr;
+    head = nullptr;
     len = 0;
 }
 
@@ -15,15 +15,15 @@ doublyLinked::doublyLinked(int val)
 {
     head = new node;
     head->data = val;
-    head->next = NULL;
-    head->prev = NULL;
+    head->next = nullptr;
+    head->prev = nullptr;
 
     len = 1;
 }
 
 doublyLinked::doublyLinked(doublyLinked& source)
 {
-    this->head = NULL;
+    this->head = nullptr;
     this->assign(&source);
 }
 
@@ -37,7 +37,7 @@ doublyLinked* doublyLinked::clone()
     doublyLinked* listClone = new doublyLinked;
     node* curr = head;
 
-    while(curr != NULL){
+    while(curr != nullptr){
         listClone->append(curr->data);
         curr = curr->next;
     }
@@ -50,7 +50,7 @@ void doublyLinked::assign(doublyLinked* source)
     node* srcCurr = source->head;
     this->clean();
     
-    while(srcCurr != NULL){
+    while(srcCurr != nullptr){
         this->append(srcCurr->data);
         srcCurr = srcCurr->next;
     }
@@ -58,7 +58,7 @@ void doublyLinked::assign(doublyLinked* source)
 
 void doublyLinked::clean()
 {
-    while(head != NULL){
+    while(head != nullptr){
         remove(0);
     }
 }
@@ -68,21 +68,21 @@ void doublyLinked::append(int val)
     node* curr = head;
     node* add = new node;
 
-    if(curr == NULL){
+    if(curr == nullptr){
         head = new node;
         head->data = val;
-        head->next = NULL;
-        head->prev = NULL;
+        head->next = nullptr;
+        head->prev = nullptr;
     }
     else{
-        while(curr->next != NULL){
+        while(curr->next != nullptr){
             curr = curr->next;
         }
 
         curr->next = add;
         add->prev = curr;
         add->data = val;
-        add->next = NULL;
+        add->next = nullptr;
 
 
     }
@@ -93,17 +93,17 @@ void doublyLinked::prettyPrint()
 {
     node* curr = head;
 
-    while(curr != NULL){
-        if(curr->prev == NULL)
-            std::cout << "NULL <-- ";
-        if(curr->next == NULL)
+    while(curr != nullptr){
+        if(curr->prev == nullptr)
+            std::cout << "nullptr <-- ";
+        if(curr->next == nullptr)
             std::cout << curr->data << " --> ";
         else
             std::cout << curr->data << " <--> ";
 
         curr = curr->next;
     }
-    std::cout << "NULL" << std::endl;
+    std::cout << "nullptr" << std::endl;
 
 }
 
@@ -118,9 +118,9 @@ void doublyLinked::remove(int index)
     else{
         if(index == 0){
             head = head->next;
-            if(head != NULL){
+            if(head != nullptr){
                 delete head->prev;
-                head->prev = NULL;
+                head->prev = nullptr;
             }
             else{
                 delete head;
@@ -131,7 +131,7 @@ void doublyLinked::remove(int index)
                 curr = curr->next;
 
             curr->prev->next = curr->next;
-            if(curr->next != NULL)
+            if(curr->next != nullptr)
                 curr->next->prev = curr->prev;
             delete curr;
         }
@@ -155,9 +155,9 @@ void doublyLinked::insert(int val, int index)
 
         if(index == 0){
             head = ins;
-            head->prev = NULL;
+            head->prev = nullptr;
             head->next = curr;
-            if(curr != NULL)
+            if(curr != nullptr)
                 curr->prev = head;
         }
         else{
@@ -180,15 +180,15 @@ doublyLinked* doublyLinked::reverse() // Non mutating reverse; Must be used like
     node* pre = selfClone->head;
     node* curr = selfClone->head->next;
     node* nxt = curr->next;
-    pre->next = NULL;
+    pre->next = nullptr;
 
-    while(curr != NULL){
+    while(curr != nullptr){
         curr->next = pre;
         curr->prev = nxt;
         pre = curr;
         curr = nxt;
 
-        if(nxt != NULL)
+        if(nxt != nullptr)
             nxt = nxt->next;
     }
 
