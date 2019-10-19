@@ -7,4 +7,4 @@
 
 # Bugs
 --------
-* Doubly linked list reverse method not returning expected object
+* ~~Doubly linked list reverse method not returning expected object~~
