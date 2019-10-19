@@ -8,10 +8,7 @@ doublyLinked::doublyLinked()
     // head->next = nullptr;
     // head->prev = nullptr;
     head = nullptr;
-<<<<<<< HEAD
-=======
     len = 0;
->>>>>>> master
 }
 
 doublyLinked::doublyLinked(int val)
@@ -20,8 +17,6 @@ doublyLinked::doublyLinked(int val)
     head->data = val;
     head->next = nullptr;
     head->prev = nullptr;
-<<<<<<< HEAD
-=======
 
     len = 1;
 }
@@ -30,13 +25,10 @@ doublyLinked::doublyLinked(doublyLinked& source)
 {
     this->head = nullptr;
     this->assign(&source);
->>>>>>> master
 }
 
 doublyLinked::~doublyLinked()
 {
-<<<<<<< HEAD
-=======
     clean();
 }
 
@@ -66,7 +58,6 @@ void doublyLinked::assign(doublyLinked* source)
 
 void doublyLinked::clean()
 {
->>>>>>> master
     while(head != nullptr){
         remove(0);
     }
@@ -120,19 +111,6 @@ void doublyLinked::remove(int index)
 {
     node* curr = head;
 
-<<<<<<< HEAD
-    if(index == 0){
-        if(head->next == nullptr){
-            delete head;
-            head = nullptr;
-            return 0;
-        }
-        else{
-        head = head->next;
-        delete head->prev;
-        head->prev = nullptr;
-        return len;
-=======
     if(index < 0 || index >= len){
         std::cout << "Index out of bounds" << std::endl;
         return;
@@ -156,7 +134,6 @@ void doublyLinked::remove(int index)
             if(curr->next != nullptr)
                 curr->next->prev = curr->prev;
             delete curr;
->>>>>>> master
         }
 
         len--;
@@ -196,14 +173,6 @@ void doublyLinked::insert(int val, int index)
     }    
 }
 
-<<<<<<< HEAD
-        curr->prev->next = curr->next;
-        if(curr->next != nullptr)
-            curr->next->prev = curr->prev;
-        delete curr;
-        
-        return len-1;
-=======
 doublyLinked* doublyLinked::reverse() // Non mutating reverse; Must be used like this -> list1.assign(list2.reverse())
 {
     doublyLinked* selfClone = this->clone();
@@ -221,7 +190,6 @@ doublyLinked* doublyLinked::reverse() // Non mutating reverse; Must be used like
 
         if(nxt != nullptr)
             nxt = nxt->next;
->>>>>>> master
     }
 
     selfClone->head = pre;
@@ -231,24 +199,9 @@ doublyLinked* doublyLinked::reverse() // Non mutating reverse; Must be used like
 
 void doublyLinked::replace(int val, int index)
 {
-<<<<<<< HEAD
-    int l = 1;
-    node* ins = new node;
-    node* curr = head;
-    
-    ins->data = val;
-
-    if(index == 0){
-        head = ins;
-        head->prev = nullptr;
-        head->next = curr;
-        curr->prev = head;
-        return l+1;
-=======
     if(index < 0 || index >= len){
         std::cout << "Index out of bounds!!" << std::endl;
         return;
->>>>>>> master
     }
     else{
         node* curr = head;
@@ -262,31 +215,9 @@ void doublyLinked::replace(int val, int index)
 
 doublyLinked& doublyLinked::operator=(doublyLinked source)
 {
-<<<<<<< HEAD
-    doublyLinked rev;
-
-    node* curr = head;
-
-    while(curr->next != nullptr){
-        rev.append(curr->data);
-        curr = curr->next;
-    }
-        rev.append(curr->data);
-        // rev.prettyPrint();
-
-    node* revCurr = rev.head;
-    while(curr != nullptr){
-        revCurr->data = curr->data;
-        std::cout << curr->data << std::endl;
-        revCurr = revCurr->next;
-        curr = curr->prev;
-    }
-        rev.prettyPrint();
-=======
     this->assign(&source);
     return *this;
 }
->>>>>>> master
 
 int doublyLinked::getLength()
 {
