@@ -5,22 +5,22 @@ doublyLinked::doublyLinked()
 {
     // head = new node;
     // head->data = 0;
-    // head->next = NULL;
-    // head->prev = NULL;
-    head = NULL;
+    // head->next = nullptr;
+    // head->prev = nullptr;
+    head = nullptr;
 }
 
 doublyLinked::doublyLinked(int val)
 {
     head = new node;
     head->data = val;
-    head->next = NULL;
-    head->prev = NULL;
+    head->next = nullptr;
+    head->prev = nullptr;
 }
 
 doublyLinked::~doublyLinked()
 {
-    while(head != NULL){
+    while(head != nullptr){
         remove(0);
     }
 }
@@ -31,14 +31,14 @@ int doublyLinked::append(int val)
     node* curr = head;
     node* add = new node;
 
-    if(curr == NULL){
+    if(curr == nullptr){
         head = new node;
         head->data = val;
-        head->next = NULL;
-        head->prev = NULL;
+        head->next = nullptr;
+        head->prev = nullptr;
     }
     else{
-        while(curr->next != NULL){
+        while(curr->next != nullptr){
             curr = curr->next;
             len++;
         }
@@ -46,7 +46,7 @@ int doublyLinked::append(int val)
         curr->next = add;
         add->prev = curr;
         add->data = val;
-        add->next = NULL;
+        add->next = nullptr;
 
         len += 1;
 
@@ -61,10 +61,10 @@ int doublyLinked::prettyPrint()
     node* curr = head;
     int len = 0;
 
-    while(curr != NULL){
-        if(curr->prev == NULL)
-            std::cout << "NULL <-- ";
-        if(curr->next == NULL)
+    while(curr != nullptr){
+        if(curr->prev == nullptr)
+            std::cout << "nullptr <-- ";
+        if(curr->next == nullptr)
             std::cout << curr->data << " --> ";
         else
             std::cout << curr->data << " <--> ";
@@ -72,7 +72,7 @@ int doublyLinked::prettyPrint()
         curr = curr->next;
         len++;
     }
-    std::cout << "NULL" << std::endl;
+    std::cout << "nullptr" << std::endl;
 
     return len;
 }
@@ -83,15 +83,15 @@ int doublyLinked::remove(int index)
     int len = 1;
 
     if(index == 0){
-        if(head->next == NULL){
+        if(head->next == nullptr){
             delete head;
-            head = NULL;
+            head = nullptr;
             return 0;
         }
         else{
         head = head->next;
         delete head->prev;
-        head->prev = NULL;
+        head->prev = nullptr;
         return len;
         }
     }
@@ -102,7 +102,7 @@ int doublyLinked::remove(int index)
         }
 
         curr->prev->next = curr->next;
-        if(curr->next != NULL)
+        if(curr->next != nullptr)
             curr->next->prev = curr->prev;
         delete curr;
         
@@ -121,7 +121,7 @@ int doublyLinked::insert(int val, int index)
 
     if(index == 0){
         head = ins;
-        head->prev = NULL;
+        head->prev = nullptr;
         head->next = curr;
         curr->prev = head;
         return l+1;
@@ -146,7 +146,7 @@ doublyLinked doublyLinked::reverse()
 
     node* curr = head;
 
-    while(curr->next != NULL){
+    while(curr->next != nullptr){
         rev.append(curr->data);
         curr = curr->next;
     }
@@ -154,7 +154,7 @@ doublyLinked doublyLinked::reverse()
         // rev.prettyPrint();
 
     node* revCurr = rev.head;
-    while(curr != NULL){
+    while(curr != nullptr){
         revCurr->data = curr->data;
         std::cout << curr->data << std::endl;
         revCurr = revCurr->next;

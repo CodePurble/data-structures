@@ -5,8 +5,8 @@ linkedList::linkedList()
 {
     // head = new node;
     // head->data = 0;
-    // head->next = NULL;
-    head = NULL;
+    // head->next = nullptr;
+    head = nullptr;
     len = 0;
 }
 
@@ -14,14 +14,14 @@ linkedList::linkedList(int val)
 {
     head = new node;
     head->data = val;
-    head->next = NULL;
+    head->next = nullptr;
     
     len = 1;
 }
 
 linkedList::linkedList(linkedList& source) // Copy constructor (called during initialisations)
 {
-    this->head = NULL;
+    this->head = nullptr;
     this->assign(&source);
     std::cout << "Copy constructor" << std::endl;
 }
@@ -35,7 +35,7 @@ void linkedList::clean() // "Cleans" list of all its nodes
 {
     int i = 0;
 
-    while(head != NULL){
+    while(head != nullptr){
         remove(i);
     }
 
@@ -47,7 +47,7 @@ linkedList* linkedList::clone() // Create identical copy of calling list, return
     linkedList* listClone = new linkedList;
     node* curr = head;
     
-    while(curr != NULL){
+    while(curr != nullptr){
         listClone->append(curr->data);
         curr = curr->next;
     }
@@ -60,7 +60,7 @@ void linkedList::assign(linkedList* source) // Copies "source" list into calling
     node* srcCurr = source->head;
     this->clean();
 
-    while(srcCurr != NULL){
+    while(srcCurr != nullptr){
         this->append(srcCurr->data);
         srcCurr = srcCurr->next;
     }
@@ -75,7 +75,7 @@ void linkedList::assign(linkedList* source) // Copies "source" list into calling
             i++;
         }
         else{
-            while(srcCurr != NULL){
+            while(srcCurr != nullptr){
                 this->append(srcCurr->data);
                 srcCurr = srcCurr->next;
             }
@@ -86,7 +86,7 @@ void linkedList::assign(linkedList* source) // Copies "source" list into calling
         for(int j = 0; j < i; j++)
             curr = curr->next;
 
-        while(curr->next != NULL){
+        while(curr->next != nullptr){
             remove(this->getLength()-1);
         }
         remove(this->getLength()-1);
@@ -98,28 +98,28 @@ List traversal
 
 node* curr = head;
 
-while(curr->next != NULL){
+while(curr->next != nullptr){
     curr = curr->next;
 }
 */
 void linkedList::append(int val)
 {
-    if(head == NULL){
+    if(head == nullptr){
         head = new node;
         head->data = val;
-        head->next = NULL;
+        head->next = nullptr;
     }
     else{
         node* add = new node;
         node* curr = head;
 
-        while(curr->next != NULL){
+        while(curr->next != nullptr){
             curr = curr->next;
         }
 
         curr->next = add;
         add->data = val;
-        add->next = NULL;
+        add->next = nullptr;
 
 
     }
@@ -131,11 +131,11 @@ void linkedList::prettyPrint()
 {
     node* curr = head;
 
-    while(curr != NULL){
+    while(curr != nullptr){
         std::cout << curr->data << " --> ";
         curr = curr->next;
     }
-    std::cout << "NULL" << std::endl;
+    std::cout << "nullptr" << std::endl;
 }
 
 void linkedList::remove(int index)
@@ -197,14 +197,14 @@ void linkedList::reverse()
     node* curr = head->next;
     node* prev = head;
     node* nxt = curr->next;
-    prev->next = NULL;
+    prev->next = nullptr;
 
-    while(curr != NULL){
+    while(curr != nullptr){
         curr->next = prev;
         prev = curr;
         curr = nxt;
 
-        if(nxt != NULL)
+        if(nxt != nullptr)
             nxt = nxt->next;
     }
 
@@ -222,7 +222,7 @@ void linkedList::replace(int val, int index) // In place substitution of data of
             curr = curr->next;
         }
         
-        if(curr != NULL){
+        if(curr != nullptr){
             curr->data = val;
         }
     }
