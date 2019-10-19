@@ -32,7 +32,7 @@ linkedList::~linkedList()
 
 void linkedList::clean() // "Cleans" list of all its nodes
 {
-    while(head != nullptr){
+    while(head != nullptr && len >= 0){
         remove(0);
     }
 }
