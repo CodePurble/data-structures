@@ -11,11 +11,11 @@ struct treeNode
 class bst
 {
     treeNode* root;
-    void killTree(treeNode* node);
-    void insert(int val, treeNode* node);
-    void inOrder(treeNode* node);
-    void postOrder(treeNode* node);
-    void preOrder(treeNode* node);
+    void killTree(treeNode* rootNode);
+    void insert(int val, treeNode* rootNode);
+    void inOrder(treeNode* rootNode);
+    void postOrder(treeNode* rootNode);
+    void preOrder(treeNode* rootNode);
 
     public:
         bst();
