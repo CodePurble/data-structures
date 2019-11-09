@@ -1,26 +1,17 @@
 #ifndef bst_hh
 #define bst_hh
-
-struct treeNode
-{
-    int data;
-    treeNode* left;
-    treeNode* right;
-};
+#include "treeNode.hh"
 
 class bst
 {
     treeNode* root;
-    void killTree(treeNode* node);
-    void insert(int val, treeNode* node);
-    void inOrder(treeNode* node);
-    void postOrder(treeNode* node);
-    void preOrder(treeNode* node);
+    void killTree();
 
     public:
         bst();
+        bst(bst& source);
         ~bst();
-        void insert(int val);
+        void addNode(int val);
         void inOrder();
         void preOrder();
         void postOrder();

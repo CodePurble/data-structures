@@ -1,105 +1,45 @@
 #include "bst.hh"
 #include <iostream>
-using namespace std;
 
-bst::bst()    
+bst::bst()
 {
     root = nullptr;
 }
 
 bst::~bst()
 {
-    killTree(root);
+    if(root != nullptr)
+        delete root;
 }
 
-void bst::killTree(treeNode* node)
+bst::bst(bst& source)
 {
-    if(node != nullptr){
-        killTree(node->left);
-        killTree(node->right);
-        delete node;
-    }
+    
 }
 
-void bst::insert(int val, treeNode* node)
-{
-    if(val <= node->data){
-        if(node->left == nullptr){
-            node->left = new treeNode;
-            node->left->data = val;
-            node->left->left = nullptr;
-            node->left->right = nullptr;
-        }
-        else{
-            insert(val, node->left);
-        }
-    }
-    else{
-        if(node->right == nullptr){
-            node->right = new treeNode;
-            node->right->data = val;
-            node->right->left = nullptr;
-            node->right->right = nullptr;
-        }
-        else{
-            insert(val, node->right);
-        }
-    }
-}
-
-void bst::insert(int val) // Abstraction of overloaded insert function that conceals private root node
+void bst::addNode(int val)
 {
     if(root != nullptr)
-        insert(val, root);
+        root->insertLeaf(val);
     else{
-        root = new treeNode;
-        root->data = val;
-        root->left = nullptr;
-        root->right = nullptr;
+        root = new treeNode(val);
     }
 }
 
-void bst::inOrder(treeNode* node)
+void bst::inOrder()
 {
-    if(node != nullptr){
-        inOrder(node->left);
-        cout << node->data << " ";
-        inOrder(node->right);
-    }
+    root->inOrder();
+    std::cout << std::endl;
 }
 
-void bst::inOrder() // Abstraction again!!
+void bst::preOrder()
 {
-    inOrder(root);
-    cout << endl;
+    root->preOrder();
+    std::cout << std::endl;
 }
 
-void bst::preOrder(treeNode* node)
+void bst::postOrder()
 {
-    if(node != nullptr){
-        cout << node->data << " ";
-        preOrder(node->left);
-        preOrder(node->right);
-    }
-}
-
-void bst::preOrder() // Abstraction again!!
-{
-    preOrder(root);
-    cout << endl;
-}
-
-void bst::postOrder(treeNode* node)
-{
-    if(node != nullptr){
-        postOrder(node->left);
-        postOrder(node->right);
-        cout << node->data << " ";
-    }
-}
-
-void bst::postOrder() // Abstraction again!!
-{
-    postOrder(root);
-    cout << endl;
+    root->postOrder();
+    std::cout << std::endl;
 }

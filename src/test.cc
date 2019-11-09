@@ -4,19 +4,18 @@ using namespace std;
 
 int main()
 {
-    bst tree;
+	bst tree;
 
-	tree.insert(10);
-	tree.insert(6);
-	tree.insert(14);
-	tree.insert(5);
-	tree.insert(8);
-	tree.insert(11);
-	tree.insert(18);
+	tree.addNode(5);
+	tree.addNode(4);
+	tree.addNode(3);
+	tree.addNode(7);
+	tree.addNode(6);
 
-    tree.inOrder();
-    tree.preOrder();
-    tree.postOrder();
+	tree.inOrder();
+	tree.postOrder();
+	tree.preOrder();
+
 
     return 0;
 }
