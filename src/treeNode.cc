@@ -74,3 +74,21 @@ void treeNode::postOrder()
     std::cout << data << " ";
 }
 
+bool treeNode::search(int key)
+{
+
+    if(key == data)
+        return true;
+    else if(key < data){
+        if(left != nullptr)
+            left->search(key);
+        else
+            return false;
+    }
+    else{
+        if(right != nullptr)
+            right->search(key);
+        else
+            return false;
+    }
+}

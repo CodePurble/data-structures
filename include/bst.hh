@@ -15,6 +15,7 @@ class bst
         void inOrder();
         void preOrder();
         void postOrder();
+        bool search(int key);
 };
 
 #endif

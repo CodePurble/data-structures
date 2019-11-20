@@ -43,3 +43,8 @@ void bst::postOrder()
     root->postOrder();
     std::cout << std::endl;
 }
+
+bool bst::search(int key)
+{
+    return root->search(key);
+}

@@ -16,6 +16,7 @@ class treeNode
         void inOrder();
         void preOrder();
         void postOrder();
+        bool search(int key);
 };
 
 #endif

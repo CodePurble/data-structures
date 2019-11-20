@@ -13,9 +13,15 @@ int main()
 	tree.addNode(6);
 
 	tree.inOrder();
-	tree.postOrder();
-	tree.preOrder();
+	// tree.postOrder();
+	// tree.preOrder();
 
+
+	if(tree.search(100))
+		cout << "found\n";
+	else
+		cout << "not found\n";
+	
 
     return 0;
 }
