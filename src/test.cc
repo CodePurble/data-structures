@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
+	int key = 1;
 	bst tree;
 
 	tree.addNode(5);
@@ -17,10 +18,10 @@ int main()
 	// tree.preOrder();
 
 
-	if(tree.search(100))
-		cout << "found\n";
+	if(tree.search(key))
+		cout << key << " found\n";
 	else
-		cout << "not found\n";
+		cout << key << " not found\n";
 	
 
     return 0;
