@@ -1,5 +1,5 @@
-#ifndef linkedList_hh
-#define linkedList_hh
+#ifndef linkedList_h
+#define linkedList_h
 
 struct NODE
 {

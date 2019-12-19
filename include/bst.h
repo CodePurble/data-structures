@@ -1,6 +1,6 @@
-#ifndef bst_hh
-#define bst_hh
-#include "treeNode.hh"
+#ifndef bst_h
+#define bst_h
+#include "treeNode.h"
 
 class bst
 {

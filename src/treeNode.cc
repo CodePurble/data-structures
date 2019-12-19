@@ -1,4 +1,4 @@
-#include "treeNode.hh"
+#include "treeNode.h"
 #include <iostream>
 
 treeNode::treeNode(int val)

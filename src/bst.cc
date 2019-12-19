@@ -1,4 +1,4 @@
-#include "bst.hh"
+#include "bst.h"
 #include <iostream>
 
 bst::bst()
@@ -14,7 +14,7 @@ bst::~bst()
 
 bst::bst(bst& source)
 {
-    
+    /* todo */    
 }
 
 void bst::addNode(int val)

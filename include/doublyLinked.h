@@ -1,5 +1,5 @@
-#ifndef doublyLinked_hh
-#define doublyLinked_hh
+#ifndef doublyLinked_h
+#define doublyLinked_h
 
 struct NODE
 {

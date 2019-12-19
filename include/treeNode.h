@@ -1,5 +1,5 @@
-#ifndef treeNode_hh
-#define treeNode_hh
+#ifndef treeNode_h
+#define treeNode_h
 
 class treeNode
 {

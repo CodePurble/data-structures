@@ -1,4 +1,4 @@
-#include "doublyLinked.hh"
+#include "doublyLinked.h"
 #include <iostream>
 
 doublyLinked::doublyLinked()
