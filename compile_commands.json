@@ -1,0 +1,72 @@
+[
+ {
+  "directory": "/home/ramprakash/RPDATA/Repos/data-structures",
+  "arguments": [
+   "g++",
+   "-Wall",
+   "-g",
+   "-I./include/",
+   "-c",
+   "src/doublyLinked.cc",
+   "-o",
+   "bin/doublyLinked.o"
+  ],
+  "file": "src/doublyLinked.cc"
+ },
+ {
+  "directory": "/home/ramprakash/RPDATA/Repos/data-structures",
+  "arguments": [
+   "g++",
+   "-Wall",
+   "-g",
+   "-I./include/",
+   "-c",
+   "src/test.cc",
+   "-o",
+   "bin/test.o"
+  ],
+  "file": "src/test.cc"
+ },
+ {
+  "directory": "/home/ramprakash/RPDATA/Repos/data-structures",
+  "arguments": [
+   "g++",
+   "-Wall",
+   "-g",
+   "-I./include/",
+   "-c",
+   "src/bst.cc",
+   "-o",
+   "bin/bst.o"
+  ],
+  "file": "src/bst.cc"
+ },
+ {
+  "directory": "/home/ramprakash/RPDATA/Repos/data-structures",
+  "arguments": [
+   "g++",
+   "-Wall",
+   "-g",
+   "-I./include/",
+   "-c",
+   "src/linkedList.cc",
+   "-o",
+   "bin/linkedList.o"
+  ],
+  "file": "src/linkedList.cc"
+ },
+ {
+  "directory": "/home/ramprakash/RPDATA/Repos/data-structures",
+  "arguments": [
+   "g++",
+   "-Wall",
+   "-g",
+   "-I./include/",
+   "-c",
+   "src/treeNode.cc",
+   "-o",
+   "bin/treeNode.o"
+  ],
+  "file": "src/treeNode.cc"
+ }
+]

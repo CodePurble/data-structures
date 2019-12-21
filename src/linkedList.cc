@@ -60,7 +60,7 @@ void linkedList::assign(linkedList* source) // Copies "source" list into calling
         srcCurr = srcCurr->next;
     }
 }   
-/*Non cohesive, spaghetti implementation of assign() method*/
+/* Non cohesive, spaghetti implementation of assign() method */
 /*
     node* curr = head;
     int i = 0;

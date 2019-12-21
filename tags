@@ -1,0 +1,96 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+$(BIN_DIR)/$(EXEC)	makefile	/^$(BIN_DIR)\/$(EXEC): $(SRC_OBJS)$/;"	t	language:Make
+$(BIN_DIR)/%.o	makefile	/^$(BIN_DIR)\/%.o: $(SRC_DIR)\/%.cc$/;"	t	language:Make
+.phony	makefile	/^.phony: all clean $/;"	t	language:Make
+BIN_DIR	makefile	/^BIN_DIR=.\/bin$/;"	m	language:Make
+Bugs	todo.md	/^# Bugs$/;"	c	language:Markdown
+COMPILE	makefile	/^COMPILE=$(CXX) $(CFLAGS) -c $^ -o $@$/;"	m	language:Make
+EXEC	makefile	/^EXEC=test$/;"	m	language:Make
+INCLUDE_DIR	makefile	/^INCLUDE_DIR=.\/include$/;"	m	language:Make
+LINK_EXE	makefile	/^LINK_EXE=$(CXX) $(CFLAGS) -o $@ $^$/;"	m	language:Make
+NODE	include/doublyLinked.h	/^struct NODE$/;"	s	language:C++
+NODE	include/linkedList.h	/^struct NODE$/;"	s	language:C++
+SRC_DIR	makefile	/^SRC_DIR=.\/src$/;"	m	language:Make
+SRC_FILES	makefile	/^SRC_FILES=$(wildcard $(SRC_DIR)\/*.cc)									# Get .c files in source$/;"	m	language:Make
+SRC_OBJS	makefile	/^SRC_OBJS=$(patsubst $(SRC_DIR)\/%.cc,$(BIN_DIR)\/%.o, $(SRC_FILES))		# Get name of .o files in s/;"	m	language:Make
+Todo List	todo.md	/^# Todo List$/;"	c	language:Markdown
+addNode	src/bst.cc	/^void bst::addNode(int val)$/;"	f	language:C++	class:bst	typeref:typename:void
+all	makefile	/^all: $(BIN_DIR)\/$(EXEC)$/;"	t	language:Make
+append	src/doublyLinked.cc	/^void doublyLinked::append(int val)$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+append	src/linkedList.cc	/^void linkedList::append(int val)$/;"	f	language:C++	class:linkedList	typeref:typename:void
+assign	src/doublyLinked.cc	/^void doublyLinked::assign(doublyLinked* source)$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+assign	src/linkedList.cc	/^void linkedList::assign(linkedList* source) \/\/ Copies "source" list into calling list object$/;"	f	language:C++	class:linkedList	typeref:typename:void
+bst	include/bst.h	/^class bst$/;"	c	language:C++
+bst	src/bst.cc	/^bst::bst()$/;"	f	language:C++	class:bst
+bst	src/bst.cc	/^bst::bst(bst& source)$/;"	f	language:C++	class:bst
+bst_h	include/bst.h	/^#define bst_h$/;"	d	language:C++
+clean	makefile	/^clean:$/;"	t	language:Make
+clean	src/doublyLinked.cc	/^void doublyLinked::clean()$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+clean	src/linkedList.cc	/^void linkedList::clean() \/\/ "Cleans" list of all its nodes$/;"	f	language:C++	class:linkedList	typeref:typename:void
+clone	src/doublyLinked.cc	/^doublyLinked* doublyLinked::clone()$/;"	f	language:C++	class:doublyLinked	typeref:typename:doublyLinked *
+clone	src/linkedList.cc	/^linkedList* linkedList::clone() \/\/ Create identical copy of calling list, returns its head$/;"	f	language:C++	class:linkedList	typeref:typename:linkedList *
+data	include/doublyLinked.h	/^    int data;$/;"	m	language:C++	struct:NODE	typeref:typename:int
+data	include/linkedList.h	/^    int data;$/;"	m	language:C++	struct:NODE	typeref:typename:int
+data	include/treeNode.h	/^    int data;$/;"	m	language:C++	class:treeNode	typeref:typename:int
+data-structures	README.md	/^# data-structures$/;"	c	language:Markdown
+deleteNode	src/treeNode.cc	/^void treeNode::deleteNode()$/;"	f	language:C++	class:treeNode	typeref:typename:void
+doublyLinked	include/doublyLinked.h	/^class doublyLinked {$/;"	c	language:C++
+doublyLinked	src/doublyLinked.cc	/^doublyLinked::doublyLinked()$/;"	f	language:C++	class:doublyLinked
+doublyLinked	src/doublyLinked.cc	/^doublyLinked::doublyLinked(doublyLinked& source)$/;"	f	language:C++	class:doublyLinked
+doublyLinked	src/doublyLinked.cc	/^doublyLinked::doublyLinked(int val)$/;"	f	language:C++	class:doublyLinked
+doublyLinked_h	include/doublyLinked.h	/^#define doublyLinked_h$/;"	d	language:C++
+getLength	src/doublyLinked.cc	/^int doublyLinked::getLength()$/;"	f	language:C++	class:doublyLinked	typeref:typename:int
+getLength	src/linkedList.cc	/^int linkedList::getLength()$/;"	f	language:C++	class:linkedList	typeref:typename:int
+head	include/doublyLinked.h	/^        node* head;$/;"	m	language:C++	class:doublyLinked	typeref:typename:node *
+head	include/linkedList.h	/^        node* head;$/;"	m	language:C++	class:linkedList	typeref:typename:node *
+inOrder	src/bst.cc	/^void bst::inOrder()$/;"	f	language:C++	class:bst	typeref:typename:void
+inOrder	src/treeNode.cc	/^void treeNode::inOrder()$/;"	f	language:C++	class:treeNode	typeref:typename:void
+insert	src/doublyLinked.cc	/^void doublyLinked::insert(int val, int index)$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+insert	src/linkedList.cc	/^void linkedList::insert(int val, int index)$/;"	f	language:C++	class:linkedList	typeref:typename:void
+insertLeaf	src/treeNode.cc	/^void treeNode::insertLeaf(int val)$/;"	f	language:C++	class:treeNode	typeref:typename:void
+left	include/treeNode.h	/^    treeNode* left;$/;"	m	language:C++	class:treeNode	typeref:typename:treeNode *
+len	include/doublyLinked.h	/^        int len;$/;"	m	language:C++	class:doublyLinked	typeref:typename:int
+len	include/linkedList.h	/^        int len;$/;"	m	language:C++	class:linkedList	typeref:typename:int
+linkedList	include/linkedList.h	/^class linkedList {$/;"	c	language:C++
+linkedList	src/linkedList.cc	/^linkedList::linkedList()$/;"	f	language:C++	class:linkedList
+linkedList	src/linkedList.cc	/^linkedList::linkedList(int val)$/;"	f	language:C++	class:linkedList
+linkedList	src/linkedList.cc	/^linkedList::linkedList(linkedList& source) \/\/ Copy constructor (called during initialisations)$/;"	f	language:C++	class:linkedList
+linkedList_h	include/linkedList.h	/^#define linkedList_h$/;"	d	language:C++
+main	src/test.cc	/^int main()$/;"	f	language:C++	typeref:typename:int
+next	include/doublyLinked.h	/^    NODE* next;$/;"	m	language:C++	struct:NODE	typeref:typename:NODE *
+next	include/linkedList.h	/^    NODE* next;$/;"	m	language:C++	struct:NODE	typeref:typename:NODE *
+node	include/doublyLinked.h	/^typedef struct NODE node;$/;"	t	language:C++	typeref:struct:NODE
+node	include/linkedList.h	/^typedef NODE node;$/;"	t	language:C++	typeref:typename:NODE
+operator =	src/doublyLinked.cc	/^doublyLinked& doublyLinked::operator=(doublyLinked source)$/;"	f	language:C++	class:doublyLinked	typeref:typename:doublyLinked &
+operator =	src/linkedList.cc	/^linkedList& linkedList::operator=(linkedList source)$/;"	f	language:C++	class:linkedList	typeref:typename:linkedList &
+postOrder	src/bst.cc	/^void bst::postOrder()$/;"	f	language:C++	class:bst	typeref:typename:void
+postOrder	src/treeNode.cc	/^void treeNode::postOrder()$/;"	f	language:C++	class:treeNode	typeref:typename:void
+preOrder	src/bst.cc	/^void bst::preOrder()$/;"	f	language:C++	class:bst	typeref:typename:void
+preOrder	src/treeNode.cc	/^void treeNode::preOrder()$/;"	f	language:C++	class:treeNode	typeref:typename:void
+prettyPrint	src/doublyLinked.cc	/^void doublyLinked::prettyPrint()$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+prettyPrint	src/linkedList.cc	/^void linkedList::prettyPrint()$/;"	f	language:C++	class:linkedList	typeref:typename:void
+prev	include/doublyLinked.h	/^    NODE* prev;$/;"	m	language:C++	struct:NODE	typeref:typename:NODE *
+remove	src/doublyLinked.cc	/^void doublyLinked::remove(int index)$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+remove	src/linkedList.cc	/^void linkedList::remove(int index)$/;"	f	language:C++	class:linkedList	typeref:typename:void
+replace	src/doublyLinked.cc	/^void doublyLinked::replace(int val, int index)$/;"	f	language:C++	class:doublyLinked	typeref:typename:void
+replace	src/linkedList.cc	/^void linkedList::replace(int val, int index) \/\/ In place substitution of data of node $/;"	f	language:C++	class:linkedList	typeref:typename:void
+reverse	src/doublyLinked.cc	/^doublyLinked* doublyLinked::reverse() \/\/ Non mutating reverse; Must be used like this -> list1/;"	f	language:C++	class:doublyLinked	typeref:typename:doublyLinked *
+reverse	src/linkedList.cc	/^linkedList* linkedList::reverse() \/\/ Non mutating reverse; Must be used like this -> list1.ass/;"	f	language:C++	class:linkedList	typeref:typename:linkedList *
+right	include/treeNode.h	/^    treeNode* right;$/;"	m	language:C++	class:treeNode	typeref:typename:treeNode *
+root	include/bst.h	/^    treeNode* root;$/;"	m	language:C++	class:bst	typeref:typename:treeNode *
+search	src/bst.cc	/^bool bst::search(int key)$/;"	f	language:C++	class:bst	typeref:typename:bool
+search	src/treeNode.cc	/^bool treeNode::search(int key)$/;"	f	language:C++	class:treeNode	typeref:typename:bool
+treeNode	include/treeNode.h	/^class treeNode$/;"	c	language:C++
+treeNode	src/treeNode.cc	/^treeNode::treeNode(int val)$/;"	f	language:C++	class:treeNode
+treeNode	src/treeNode.cc	/^treeNode::treeNode(treeNode& source)$/;"	f	language:C++	class:treeNode
+treeNode_h	include/treeNode.h	/^#define treeNode_h$/;"	d	language:C++
+~bst	src/bst.cc	/^bst::~bst()$/;"	f	language:C++	class:bst
+~doublyLinked	src/doublyLinked.cc	/^doublyLinked::~doublyLinked()$/;"	f	language:C++	class:doublyLinked
+~linkedList	src/linkedList.cc	/^linkedList::~linkedList()$/;"	f	language:C++	class:linkedList
+~treeNode	src/treeNode.cc	/^treeNode::~treeNode()$/;"	f	language:C++	class:treeNode
