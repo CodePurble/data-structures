@@ -1,28 +1,15 @@
-#include "bst.h"
+#include "hashTable.h"
 #include <iostream>
 using namespace std;
 
 int main()
 {
-	int key = 1;
-	bst tree;
+	hashTable t;
 
-	tree.addNode(5);
-	tree.addNode(4);
-	tree.addNode(3);
-	tree.addNode(7);
-	tree.addNode(6);
+	t.addElement("Ram");
+	t.prettyPrint();
 
-	tree.inOrder();
-	// tree.postOrder();
-	// tree.preOrder();
+	cout << t.lookup("Ram") << endl << t.lookup("asasd") << endl;
 
-
-	if(tree.search(key))
-		cout << key << " found\n";
-	else
-		cout << key << " not found\n";
-	
-
-    return 0;
+	return 0;
 }
